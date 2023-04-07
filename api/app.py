@@ -4,7 +4,6 @@ from assistant import Assistant
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-gpt = Assistant()
 
 app.add_middleware(
     CORSMiddleware,
@@ -35,11 +34,11 @@ def verify_source_code(source_code: str):
 
 @app.post("/get_suggestion")
 def get_suggestion(body: SuggestionBody):
-    print(body)
     source_code = body.source_code
 
     if not verify_source_code(source_code):
         return {"message": "Bad Source Code"}
+    gpt = Assistant()
 
     gpt_response = gpt.write_message(role="user", content=source_code)
     return {"message": gpt_response}
