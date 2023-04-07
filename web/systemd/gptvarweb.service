@@ -1,0 +1,12 @@
+[Unit]
+Description=Frontend For GPT Variables
+[Install]
+WantedBy=multi-user.target
+[Service]
+Type=simple
+User=ubuntu
+PermissionsStartOnly=true
+WorkingDirectory=/home/ubuntu/repos/gpt-variables/web/gpt-variables/
+ExecStart=npm run preview
+Restart=on-failure
+TimeoutSec=600

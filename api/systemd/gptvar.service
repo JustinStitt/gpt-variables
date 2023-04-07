@@ -1,0 +1,12 @@
+[Unit]
+Description=FastAPI ASGI For GPT Variables
+[Install]
+WantedBy=multi-user.target
+[Service]
+Type=simple
+User=ubuntu
+PermissionsStartOnly=true
+WorkingDirectory=/home/ubuntu/repos/gpt-variables/api/
+ExecStart=/home/ubuntu/repos/gpt-variables/api/venv/bin/uvicorn app:app --reload
+Restart=on-failure
+TimeoutSec=600

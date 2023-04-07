@@ -25,7 +25,7 @@
     console.log("sending code: ", source_code);
     evaluate_button.setAttribute("aria-busy", "true");
     evaluate_button.classList.add("secondary");
-    const base_url = "http://127.0.0.1:8000/get_suggestion";
+    const base_url = "https://gptvar.jstitt.dev/api/get_suggestion";
     const body = {
       loc: 1,
       language: "Python",
@@ -34,7 +34,10 @@
 
     fetch(base_url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify(body),
     })
       .then((resp) => resp.json())
