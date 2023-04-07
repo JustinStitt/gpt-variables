@@ -2,7 +2,7 @@
   let files;
 
   let source_code = "<pending>";
-  let gpt_response = "<pending>";
+  let gpt_response = "<i>pending...</i>";
   let evaluate_button;
 
   const uploadFile = async () => {
@@ -68,7 +68,8 @@
 
   <article>
     <h3>GPT's Evaluation</h3>
-    <textarea readonly="true" bind:value={gpt_response} />
+    <!-- <textarea readonly="true" bind:value={gpt_response} /> -->
+    <p>{@html gpt_response}</p>
   </article>
 </main>
 
