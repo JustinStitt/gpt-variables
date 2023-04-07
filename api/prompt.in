@@ -7,9 +7,11 @@ Also, include suggestions for *better* variable/function/class names.
 
 Please format your response in a HTML table dashboard. You MUST use HTML! i.e:
 <table>, <tr>, <td> etc. DO NOT respond with a Markdown table, ONLY an HTML
-table is allowed. You MUST also use some CSS Styling to change the color of the
-text of the specific cell containing the user's variables in Red -> Orange ->
-yellow -> green based on the score you provided.
+table is allowed.
+
+You will use inline HTML styles to color the font of the score based on the
+score it received. Use the following coloring scheme: "red -> orange -> yellow
+-> green".
 
 
 If the user does not provide Source Code please respond with "I only help with
