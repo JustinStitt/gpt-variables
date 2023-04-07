@@ -1,7 +1,10 @@
 <script>
+  import { fade } from "svelte/transition";
+
   let files;
 
   let source_code = "<pending>";
+  let source_code_header, source_code_article, gpt_evaluation_article;
   let gpt_response = "<i>pending...</i>";
   let evaluate_button;
 
@@ -18,6 +21,8 @@
     });
     evaluate_button.classList.remove("secondary");
     evaluate_button.removeAttribute("disabled");
+    source_code_article.removeAttribute("hidden");
+    window.scrollTo(0, document.body.scrollHeight);
   };
 
   const sendToGPT = async () => {
@@ -45,6 +50,8 @@
         gpt_response = data.message;
         evaluate_button.setAttribute("aria-busy", "false");
         evaluate_button.setAttribute("disabled", "true");
+        gpt_evaluation_article.removeAttribute("hidden");
+        gpt_evaluation_article.scrollIntoView();
       });
   };
 </script>
@@ -60,13 +67,13 @@
     <button on:click={uploadFile}>Submit</button>
   </article>
 
-  <article>
-    <h3>Source Code</h3>
-    <textarea readonly="true" bind:value={source_code} />
+  <article bind:this={source_code_article} hidden transition:fade>
+    <h3 bind:this={source_code_header}>Source Code</h3>
+    <textarea readonly bind:value={source_code} />
     <button on:click={sendToGPT} bind:this={evaluate_button}>Evaluate</button>
   </article>
 
-  <article>
+  <article bind:this={gpt_evaluation_article} hidden>
     <h3>GPT's Evaluation</h3>
     <!-- <textarea readonly="true" bind:value={gpt_response} /> -->
     <p>{@html gpt_response}</p>
